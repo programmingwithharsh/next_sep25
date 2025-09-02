@@ -26,13 +26,21 @@ export default class Main extends React.Component { // Export Main Component, in
     render() { // Class Component lifecycle
         console.log("Render - 2");
         console.log(this.state);
+        const x = 2;
+        const username = "Mayank"; // string
+        const interests = ["Playing Badminton", "Television", "Work for Client", "Coding"]; // Array
+        const birth = { // object
+            place: "Agra",
+            year: 2000
+        };
+
         return <div>
             <div>This is Main Class Component 2 + 2 is {2 + 2} </div>
             <div>Username is {this.state.username}</div>
             <button onClick={this.updateUsername}>Update Username</button>
-            <AddProduct />
+            <AddProduct title="This is Title" />
             <ProductList />
-            <Title />
+            <Title x={x} username={username} interests={interests} birth={birth} />
             <Welcome />
         </div>
     }
