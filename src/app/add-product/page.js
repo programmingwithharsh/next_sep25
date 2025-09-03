@@ -35,8 +35,8 @@ function AddProduct(props) {
 
         <h1>State is {name}</h1>
 
-        <button type="button" class="btn btn-primary">Button 1</button>
-        <button type="button" class="btn btn-outline-primary">Button 2</button>
+        <button type="button" className="btn btn-primary">Button 1</button>
+        <button type="button" className="btn btn-outline-primary">Button 2</button>
 
         <button className="btn btn-primary" onClick={updateName}>Update Name</button>
         <form onSubmit={handleSubmit} className="col-xxl-4">
