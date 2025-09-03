@@ -40,3 +40,12 @@ a {
     color-scheme: dark;
   }
 }
+/* Custom CSS */
+.header {
+  background-color: aqua;
+}
+/* Override bootstrap CSS */
+.btn-primary {
+  background-color: brown;
+  border: 2px solid black;
+}

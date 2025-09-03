@@ -34,7 +34,11 @@ function AddProduct(props) {
         <h1>Props is {props.title} </h1>
 
         <h1>State is {name}</h1>
-        <button className="btn btn-outline-primary" onClick={updateName}>Update Name</button>
+
+        <button type="button" class="btn btn-primary">Button 1</button>
+        <button type="button" class="btn btn-outline-primary">Button 2</button>
+
+        <button className="btn btn-primary" onClick={updateName}>Update Name</button>
         <form onSubmit={handleSubmit} className="col-xxl-4">
             Enter Product Name <input type="text" className="form-control" placeholder="Enter Product name" value={name} onChange={handleChange} />
             <input type="submit" className="btn btn-outline-primary mt-2" value="Add Product" />

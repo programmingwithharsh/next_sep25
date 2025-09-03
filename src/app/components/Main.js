@@ -4,7 +4,7 @@ import AddProduct from './AddProduct';
 import ProductList from './ProductList';
 import Title from './Title';
 import Welcome from './Welcome';
-import Nav from './Nav';
+import CoreBootstrap from '../core-bootstrap/CoreBootstrap';
 
 export default class Main extends React.Component { // Export Main Component, inherit React class
 
@@ -35,11 +35,11 @@ export default class Main extends React.Component { // Export Main Component, in
             year: 2000
         };
 
-        return <div className='container'>
-            <Nav />
+        return <div className='container-fluid'>
+            <CoreBootstrap />
             <div className='mt-2'>
-                <div>This is Main Class Component 2 + 2 is {2 + 2} </div>
-                <div>Username is {this.state.username}</div>
+                <div className='alert alert-primary'>This is Main Class Component 2 + 2 is {2 + 2} </div>
+                <div className='header mb-2'>Username is {this.state.username}</div>
                 <button className='btn btn-primary' onClick={this.updateUsername}>Update Username</button>
                 <AddProduct title="This is Title" />
                 <ProductList />
