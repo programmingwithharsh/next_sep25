@@ -25,8 +25,8 @@ export default class Main extends React.Component { // Export Main Component, in
         console.log(this.state);
 
         return <div className='container-fluid'>
-            <Nav />
-            <main>{this.props.children}</main>
+            <Nav /> {/* The Nav is the part of Main Component */}
+            <div>{this.props.children}</div> {/* The Page Content is rendered here */}
         </div>
     }
 }

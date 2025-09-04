@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <BootstrapClient />
-        <Main>{children}</Main>
+        <Main>{children}</Main> {/* Render content here */}
       </body>
     </html>
   );
