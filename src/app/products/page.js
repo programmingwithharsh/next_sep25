@@ -19,6 +19,8 @@ function ProductList() { // We can get defaultProducts, later API calls
                                 <p className="card-text">{product.price}</p>
                                 <p className="card-text">{product.starRating}</p>
                                 <Link className="btn btn btn-outline-primary m-1" href={`/product-detail/${product.productId}`}>Buy now</Link>
+                                <button className='btn btn-danger m-2'>Remove</button>
+                                <Link className="btn btn btn-outline-primary m-1" href={`/product-update/${product.productId}`}>Update</Link>
                             </div>
                         </div>
                     </div>
