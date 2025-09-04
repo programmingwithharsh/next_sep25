@@ -23,7 +23,13 @@ function Nav() {
                         <Link className="nav-link" href="/title">Title</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" href="/corebootstrap">Core Bootstrap</Link>
+                        <Link className="nav-link" href="/core-bootstrap">Core Bootstrap</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" href="/settings/account">Settings</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" href="/components/preference/menu">Preference</Link>
                     </li>
                 </ul>
                 <form className="d-flex" role="search">
