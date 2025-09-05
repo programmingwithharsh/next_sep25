@@ -5,7 +5,7 @@ import { useState } from "react";
 function AddProduct(props) {
     // Array Destructuring in ES6
     const [product, setProduct] = useState({
-        "productName": "Hammer",
+        "productName": "",
         "productCode": "",
         "releaseDate": "",
         "description": "",
@@ -23,7 +23,11 @@ function AddProduct(props) {
     const handleSubmit = (e) => {
         alert('You have clicked on Submit Button ...');
         e.preventDefault(); // stop page refresh
-        setProduct(e.target[0].value);
+        console.log({ product });
+        /*
+            Do API call and store this information inside database
+            We can use fetch method for making API calls
+        */
     }
 
     const handleChange = (e) => {
@@ -34,10 +38,12 @@ function AddProduct(props) {
         /*
             Update product based on onchange value
         */
-        setProduct((prev) => ({ // to update product
+
+        setProduct((prev) => ({ // to update product, update state
             ...prev,
-            [name]: name === 'price' || name === 'starRating' ? parseInt(value) || '' : value
+            [name]: value
         }))
+
     }
 
     return <>
@@ -46,7 +52,7 @@ function AddProduct(props) {
         <button type="button" className="btn btn-primary">Button 1</button>
         <button type="button" className="btn btn-outline-primary">Button 2</button>
 
-        <form onSubmit={handleSubmit} className="col-xxl-4">
+        <form onSubmit={handleSubmit} className="col-xxl-4 mt-4">
             Enter Product Name <input type="text" name="productName" className="form-control" placeholder="Enter Product name" value={product.productName} onChange={handleChange} />
 
             Enter Product Code <input type="text" name="productCode" className="form-control" placeholder="Enter Product code" value={product.productCode} onChange={handleChange} />
