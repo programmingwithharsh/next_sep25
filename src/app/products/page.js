@@ -19,6 +19,20 @@ function ProductList() { // We can get defaultProducts, later API calls
             })
     }, [])
 
+    const handleRemove = async (id) => {
+        if (!confirm('Are you sure you want to remove it?')) return;
+
+        const res = await fetch(`http://localhost:3000/api/product/${id}`, {
+            method: "DELETE"
+        })
+
+        if (!res.ok) {
+            throw new Error('Failed to delete product');
+        }
+
+        setProducts(prevProducts => prevProducts.filter(product => product._id !== id));
+    }
+
     return <div className='mt-4'>
         <h1>Product List</h1>
         <div className='row'>
@@ -35,7 +49,7 @@ function ProductList() { // We can get defaultProducts, later API calls
                                 <p className="card-text">{product.price}</p>
                                 <p className="card-text">{product.starRating}</p>
                                 <Link className="btn btn btn-outline-primary m-1" href={`/product-detail/${product.productId}`}>Buy now</Link>
-                                <button className='btn btn-danger m-2'>Remove</button>
+                                <button className='btn btn-danger m-2' onClick={() => handleRemove(product._id)}>Remove</button>
                                 <Link className="btn btn btn-outline-primary m-1" href={`/product-update/${product.productId}`}>Update</Link>
                             </div>
                         </div>
