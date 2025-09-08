@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 function AddProduct(props) {
+    const router = useRouter();
     // Array Destructuring in ES6
     const [product, setProduct] = useState({
         "productName": "",
@@ -20,7 +22,7 @@ function AddProduct(props) {
         this.setState({})  | setProduct method we can use to update name
     */
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         alert('You have clicked on Submit Button ...');
         e.preventDefault(); // stop page refresh
         console.log({ product });
@@ -28,6 +30,21 @@ function AddProduct(props) {
             Do API call and store this information inside database
             We can use fetch method for making API calls
         */
+
+        const res = await fetch('http://localhost:3000/api/product', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        });
+
+        if (!res) {
+            throw new Error('Failed to add product');
+        }
+
+        const createdProduct = await res.json();
+        router.push('/products'); // Register to products page 
     }
 
     const handleChange = (e) => {
