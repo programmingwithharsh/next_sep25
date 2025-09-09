@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 function AddProduct(props) {
+    const apiURL = process.env.NEXT_PUBLIC_API_URL;
     const router = useRouter();
     // Array Destructuring in ES6
     const [product, setProduct] = useState({
@@ -31,7 +32,7 @@ function AddProduct(props) {
             We can use fetch method for making API calls
         */
 
-        const res = await fetch('http://localhost:3000/api/product', {
+        const res = await fetch(apiURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGODB_URL = 'mongodb://127.0.0.1/productsdb'
+const MONGODB_URL = process.env.MONGODB_URL;
 
 if (!global.mongoose) {
     global.mongoose = { conn: null, promise: null }

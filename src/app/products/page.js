@@ -6,9 +6,10 @@ import { useState, useEffect } from 'react';
 function ProductList() { // We can get defaultProducts, later API calls
 
     const [products, setProducts] = useState([]); // Products is empty array
+    const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/product", {
+        fetch(apiURL, {
             method: "GET"
         }) // built in promise which we use to create APIs
             .then(response => response.json()) // json data type
@@ -22,7 +23,7 @@ function ProductList() { // We can get defaultProducts, later API calls
     const handleRemove = async (id) => {
         if (!confirm('Are you sure you want to remove it?')) return;
 
-        const res = await fetch(`http://localhost:3000/api/product/${id}`, {
+        const res = await fetch(`${apiURL}/${id}`, {
             method: "DELETE"
         })
 
@@ -48,9 +49,9 @@ function ProductList() { // We can get defaultProducts, later API calls
                                 <p className="card-text">{product.description}</p>
                                 <p className="card-text">{product.price}</p>
                                 <p className="card-text">{product.starRating}</p>
-                                <Link className="btn btn btn-outline-primary m-1" href={`/product-detail/${product.productId}`}>Buy now</Link>
+                                <Link className="btn btn btn-outline-primary m-1" href={`/product-detail/${product._id}`}>Buy now</Link>
                                 <button className='btn btn-danger m-2' onClick={() => handleRemove(product._id)}>Remove</button>
-                                <Link className="btn btn btn-outline-primary m-1" href={`/product-update/${product.productId}`}>Update</Link>
+                                <Link className="btn btn btn-outline-primary m-1" href={`/product-update/${product._id}`}>Update</Link>
                             </div>
                         </div>
                     </div>
