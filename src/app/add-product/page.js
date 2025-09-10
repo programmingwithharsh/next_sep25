@@ -83,6 +83,10 @@ function AddProduct(props) {
             <p>This is styles using scss</p>
         </div>
 
+        <h1 className="text-3xl font-bold underline">
+            Hello world using Tailwind
+        </h1>
+
         <Star />
 
         <form onSubmit={handleSubmit} className="col-xxl-4 mt-4">
