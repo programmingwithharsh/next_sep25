@@ -1,0 +1,258 @@
+JSON Web Token (JWT) Authentication and Authorization
+
+Authorization
+    user 
+    admin 
+
+IBM (Employee)
+Sony Pictures (ODC)
+
+Step 1
+-------
+
+jsonwebtoken
+bcryptjs
+
+Step 2
+-------
+
+Backend APIs
+
+1. POST 
+http://localhost:3000/api/auth/register
+
+Request below
+
+{
+    "username": "harsh",
+    "email": "harsh@gmail.com",
+    "password": "harsh12345",
+    "role": "user"
+}
+
+Response below
+
+{
+    "success": true,
+    "message": "User registered successfully",
+    "data": {
+        "user": {
+            "username": "harsh",
+            "email": "harsh@gmail.com",
+            "role": "user",
+            "isActive": true,
+            "_id": "68c1262b83eedcd0cf0da49c",
+            "createdAt": "2025-09-10T07:18:03.463Z",
+            "updatedAt": "2025-09-10T07:18:03.692Z",
+            "__v": 0
+        },
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzEyNjJiODNlZWRjZDBjZjBkYTQ5YyIsInVzZXJuYW1lIjoiaGFyc2giLCJlbWFpbCI6ImhhcnNoQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU3NDg4NjgzLCJleHAiOjE3NTgwOTM0ODN9.1tXUy7Nzv0dg6htWoC-5mbyq4rRBgQ5ccY-62uNEHsI"
+    }
+}
+
+Another request 
+
+Request below
+
+{
+    "username": "namrata",
+    "email": "namrata@gmail.com",
+    "password": "namrata12345",
+    "role": "admin"
+}
+
+
+{
+    "success": true,
+    "message": "User registered successfully",
+    "data": {
+        "user": {
+            "username": "namrata",
+            "email": "namrata@gmail.com",
+            "role": "admin",
+            "isActive": true,
+            "_id": "68c1287c83eedcd0cf0da4a6",
+            "createdAt": "2025-09-10T07:27:56.277Z",
+            "updatedAt": "2025-09-10T07:27:56.472Z",
+            "__v": 0
+        },
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzEyODdjODNlZWRjZDBjZjBkYTRhNiIsInVzZXJuYW1lIjoibmFtcmF0YSIsImVtYWlsIjoibmFtcmF0YUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTc0ODkyNzYsImV4cCI6MTc1ODA5NDA3Nn0.zRTBJbe_e7ISdvL12k0zS9txZX4KsGo9r-EYU4Octz4"
+    }
+}
+
+2. POST
+http://localhost:3000/api/auth/login
+
+Request below
+
+{
+    "email": "harsh@gmail.com",
+    "password": "harsh12345"
+}
+
+Response below 
+
+{
+    "success": true,
+    "message": "Login successful",
+    "data": {
+        "user": {
+            "_id": "68c1262b83eedcd0cf0da49c",
+            "username": "harsh",
+            "email": "harsh@gmail.com",
+            "role": "user",
+            "isActive": true,
+            "createdAt": "2025-09-10T07:18:03.463Z",
+            "updatedAt": "2025-09-10T07:18:03.692Z",
+            "__v": 0
+        },
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YzEyNjJiODNlZWRjZDBjZjBkYTQ5YyIsInVzZXJuYW1lIjoiaGFyc2giLCJlbWFpbCI6ImhhcnNoQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU3NDg4ODAxLCJleHAiOjE3NTgwOTM2MDF9.mEOWkYFF-GowS0kaoGcMsJ6q1tSWJDrAXFHF1zKRVWU"
+    }
+}
+
+3. GET 
+http://localhost:3000/api/auth/profile
+
+Without Token Reponse 
+{
+    "success": false,
+    "message": "Access token required"
+}
+
+With Token Reponse 
+
+{
+    "success": true,
+    "data": {
+        "user": {
+            "_id": "68c1262b83eedcd0cf0da49c",
+            "username": "harsh",
+            "email": "harsh@gmail.com",
+            "role": "user",
+            "isActive": true,
+            "createdAt": "2025-09-10T07:18:03.463Z",
+            "updatedAt": "2025-09-10T07:18:03.692Z",
+            "__v": 0
+        }
+    }
+}
+
+4. GET
+http://localhost:3000/api/auth/verify
+
+Without Token Reponse 
+
+{
+    "success": false,
+    "message": "Access token required"
+}
+
+With Token Reponse
+
+{
+    "success": true,
+    "message": "Token is valid",
+    "data": {
+        "user": {
+            "id": "68c1262b83eedcd0cf0da49c",
+            "username": "harsh",
+            "email": "harsh@gmail.com",
+            "role": "user"
+        }
+    }
+}
+
+5. GET  
+http://localhost:3000/api/auth/users
+
+Without Token Reponse 
+
+{
+    "success": false,
+    "message": "Access token required"
+}
+
+With Token Reponse 
+{
+    "success": false,
+    "message": "Admin access required"
+}
+
+With Admin Token 
+
+{
+    "success": true,
+    "data": {
+        "users": [
+            {
+                "_id": "68c1287c83eedcd0cf0da4a6",
+                "username": "namrata",
+                "email": "namrata@gmail.com",
+                "role": "admin",
+                "isActive": true,
+                "createdAt": "2025-09-10T07:27:56.277Z",
+                "updatedAt": "2025-09-10T07:27:56.472Z",
+                "__v": 0
+            },
+            {
+                "_id": "68c1262b83eedcd0cf0da49c",
+                "username": "harsh",
+                "email": "harsh@gmail.com",
+                "role": "user",
+                "isActive": true,
+                "createdAt": "2025-09-10T07:18:03.463Z",
+                "updatedAt": "2025-09-10T07:18:03.692Z",
+                "__v": 0
+            }
+        ],
+        "count": 2
+    }
+}
+
+
+
+Step 1
+-------
+jsonwebtoken
+bcryptjs
+
+Step 2
+Create APIs
+
+1. POST 
+http://localhost:3000/api/auth/register (register.js)
+2. POST
+http://localhost:3000/api/auth/login (login.js)
+
+3. GET 
+http://localhost:3000/api/auth/profile (profile.js)
+4. GET
+http://localhost:3000/api/auth/verify (verify.js)
+5. GET  
+http://localhost:3000/api/auth/users (users.js)
+
+Step 3
+Consume APIs
+
+
+Token related info 
+------------------
+generate token - jwt.sign()
+verify token - jwt.verify()
+
+
+Bcytyptjs info 
+---------------
+
+bcrypt.genSalt()
+bcrypt.hash()
+bcrypt.compare()
+
+Error Handling 
+----------------
+400 Bad request
+401 Unauthorized 
+403 Forbideen (Insuficience persmision)
+404 Not found
+409 Conflict (user already exists)
+500 Internal server error
