@@ -1,0 +1,14 @@
+$color: yellow;
+$blueColor: blue;
+$grayColor: gray;
+
+.container2 {
+  background-color: $color;
+  h1 {
+    color: $blueColor;
+  }
+
+  p {
+    color: $grayColor;
+  }
+}

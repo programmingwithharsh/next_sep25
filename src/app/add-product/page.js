@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import '../home.scss';
+import styles from '../home2.module.scss';
+import Star from "./star.component";
 
 function AddProduct(props) {
     const apiURL = process.env.NEXT_PUBLIC_API_URL;
@@ -69,6 +72,18 @@ function AddProduct(props) {
 
         <button type="button" className="btn btn-primary">Button 1</button>
         <button type="button" className="btn btn-outline-primary">Button 2</button>
+
+        <div className="container">CSS example using scss
+            <h1>Hello SCSS in Next.js</h1>
+            <p>This is styles using scss</p>
+        </div>
+
+        <div className={styles.container2}>CSS example using scss - Module
+            <h1>Hello SCSS in Next.js</h1>
+            <p>This is styles using scss</p>
+        </div>
+
+        <Star />
 
         <form onSubmit={handleSubmit} className="col-xxl-4 mt-4">
             Enter Product Name <input type="text" name="productName" className="form-control" placeholder="Enter Product name" value={product.productName} onChange={handleChange} />
