@@ -11,9 +11,10 @@ export default class Main extends React.Component { // Export Main Component, in
             username: "Supriya",
             address: "Delhi"
         }
+        this.updateUsername = this.updateUsername.bind(this);
     }
 
-    updateUsername = () => {
+    updateUsername() {
         this.setState({ // to update state we use this.setState, whenever state updates, component rerender
             username: "Abhimanyu",
             address: "Mumbai"
@@ -26,6 +27,9 @@ export default class Main extends React.Component { // Export Main Component, in
 
         return <div className='container-fluid'>
             <Nav /> {/* The Nav is the part of Main Component */}
+            <h1>This is Main Component</h1>
+            <h1>State username is {this.state.username}</h1>
+            <button onClick={this.updateUsername}>Update username</button>
             <div>{this.props.children}</div> {/* The Page Content is rendered here */}
         </div>
     }
