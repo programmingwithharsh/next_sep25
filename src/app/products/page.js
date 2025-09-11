@@ -2,6 +2,7 @@
 import defaultProducts from '../../data/Products';
 import Link from "next/link";
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function ProductList() { // We can get defaultProducts, later API calls
 
@@ -14,6 +15,7 @@ function ProductList() { // We can get defaultProducts, later API calls
         }) // built in promise which we use to create APIs
             .then(response => response.json()) // json data type
             .then(data => {
+                console.log("fetch response", data);
                 setProducts(data);
             }).catch(error => {
                 console.log(error)
@@ -34,8 +36,18 @@ function ProductList() { // We can get defaultProducts, later API calls
         setProducts(prevProducts => prevProducts.filter(product => product._id !== id));
     }
 
+    const fetchWithAxios = async () => {
+        try {
+            const response = await axios.get(apiURL);
+            console.log("axios response", response);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return <div className='mt-4'>
         <h1>Product List</h1>
+        <button className='btn btn-primary' onClick={fetchWithAxios}>Fetch with Axios</button>
         <div className='row'>
             {
                 products.map((product) => (

@@ -11,6 +11,9 @@ function Nav() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
+                        <Link className="nav-link" href="/home">Home</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className="nav-link" href="/add-product">Add Product</Link>
                     </li>
                     <li className="nav-item">
@@ -27,6 +30,12 @@ function Nav() {
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" href="/user/dashboard">User Dashboard</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" href="/redux-demo">Redux Toolkit</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" href="/lazy-demo" prefetch={true}>Lazy Load</Link>
                     </li>
                 </ul>
                 <form className="d-flex" role="search">
