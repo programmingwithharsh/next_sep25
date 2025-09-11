@@ -52,9 +52,9 @@ export default function RegisterPage() {
 
             if (data.success) {
                 // Store token in localStorage
-                localStorage.setItem('token', data.data.token);
-                localStorage.setItem('user', JSON.stringify(data.data.user));
-                
+                localStorage.setItem('token', data.data.token); // store token in localstorage
+                localStorage.setItem('user', JSON.stringify(data.data.user)); // store user in localstorage
+
                 // Redirect based on role
                 if (data.data.user.role === 'admin') {
                     router.push('/admin/dashboard');
@@ -85,7 +85,7 @@ export default function RegisterPage() {
                                     {error}
                                 </div>
                             )}
-                            
+
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
                                     <label htmlFor="username" className="form-label">Username</label>
@@ -101,7 +101,7 @@ export default function RegisterPage() {
                                         maxLength="30"
                                     />
                                 </div>
-                                
+
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email</label>
                                     <input
@@ -114,7 +114,7 @@ export default function RegisterPage() {
                                         required
                                     />
                                 </div>
-                                
+
                                 <div className="mb-3">
                                     <label htmlFor="password" className="form-label">Password</label>
                                     <input
@@ -128,7 +128,7 @@ export default function RegisterPage() {
                                         minLength="6"
                                     />
                                 </div>
-                                
+
                                 <div className="mb-3">
                                     <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
                                     <input
@@ -142,7 +142,7 @@ export default function RegisterPage() {
                                         minLength="6"
                                     />
                                 </div>
-                                
+
                                 <div className="mb-3">
                                     <label htmlFor="role" className="form-label">Role</label>
                                     <select
@@ -156,10 +156,10 @@ export default function RegisterPage() {
                                         <option value="admin">Admin</option>
                                     </select>
                                 </div>
-                                
+
                                 <div className="d-grid">
-                                    <button 
-                                        type="submit" 
+                                    <button
+                                        type="submit"
                                         className="btn btn-primary"
                                         disabled={loading}
                                     >
@@ -167,10 +167,10 @@ export default function RegisterPage() {
                                     </button>
                                 </div>
                             </form>
-                            
+
                             <div className="text-center mt-3">
                                 <p>
-                                    Already have an account? 
+                                    Already have an account?
                                     <a href="/auth/login" className="ms-1">Login here</a>
                                 </p>
                             </div>

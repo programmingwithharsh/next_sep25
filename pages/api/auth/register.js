@@ -60,7 +60,9 @@ export default async function handler(req, res) {
         await user.save();
 
         // Generate JWT token
+        console.log(user); // debugging
         const token = generateToken(user);
+        console.log({token});
 
         res.status(201).json({
             success: true,

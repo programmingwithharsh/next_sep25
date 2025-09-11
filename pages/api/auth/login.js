@@ -43,6 +43,7 @@ export default async function handler(req, res) {
 
         // Verify password
         const isPasswordValid = await user.comparePassword(password);
+        console.log(isPasswordValid);
         
         if (!isPasswordValid) {
             return res.status(401).json({

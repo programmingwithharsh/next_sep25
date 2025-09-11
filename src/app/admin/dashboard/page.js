@@ -11,9 +11,10 @@ export default function AdminDashboard() {
     const router = useRouter();
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        const userData = localStorage.getItem('user');
+        const token = localStorage.getItem('token'); // get item from localstorage
+        const userData = localStorage.getItem('user'); // get item from localstorage
 
+        // debugger
         if (!token || !userData) {
             router.push('/auth/login');
             return;

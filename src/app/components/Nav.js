@@ -11,9 +11,6 @@ function Nav() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                        <Link className="nav-link active" href="/home">Home</Link>
-                    </li>
-                    <li className="nav-item">
                         <Link className="nav-link" href="/add-product">Add Product</Link>
                     </li>
                     <li className="nav-item">
@@ -26,14 +23,15 @@ function Nav() {
                         <Link className="nav-link" href="/core-bootstrap">Core Bootstrap</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" href="/settings/account">Settings</Link>
+                        <Link className="nav-link" href="/admin/dashboard">Admin Dashboard</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" href="/components/preference/menu">Preference</Link>
+                        <Link className="nav-link" href="/user/dashboard">User Dashboard</Link>
                     </li>
                 </ul>
                 <form className="d-flex" role="search">
-                    <button className="btn btn-outline-light" type="submit">Login</button>
+                    <Link className="btn btn-outline-light" href="/auth/register">Register</Link>
+                    <Link className="btn btn-outline-light" href="/auth/login">Login</Link>
                 </form>
             </div>
         </div>
