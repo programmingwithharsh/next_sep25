@@ -27,9 +27,6 @@ export default class Main extends React.Component { // Export Main Component, in
 
         return <div className='container-fluid'>
             <Nav /> {/* The Nav is the part of Main Component */}
-            <h1>This is Main Component</h1>
-            <h1>State username is {this.state.username}</h1>
-            <button className='btn btn-primary' onClick={this.updateUsername}>Update username</button>
             <div>{this.props.children}</div> {/* The Page Content is rendered here */}
         </div>
     }

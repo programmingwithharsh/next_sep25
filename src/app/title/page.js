@@ -1,9 +1,9 @@
 "use client";
 import bcrypt from 'bcryptjs'
 import { useRouter, useSearchParams } from "next/navigation";
-import { useRef } from "react";
+import { useRef, Suspense } from "react";
 
-export default function Title() {
+function TitleContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const password = 'myPassword123'
@@ -82,5 +82,13 @@ export default function Title() {
                 </form>
             </div>
         </div>
+    );
+}
+
+export default function Title() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <TitleContent />
+        </Suspense>
     );
 }

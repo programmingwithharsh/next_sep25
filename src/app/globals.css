@@ -49,3 +49,50 @@ a {
   background-color: brown;
   border: 2px solid black;
 }
+
+/* Sidebar hover show/hide */
+.sidebar-menu {
+  width: 56px; /* collapsed width ~ Bootstrap icon size */
+  transition: width 0.2s ease-in-out;
+  background-color: var(--bs-primary);
+  color: #fff;
+  border: none;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.sidebar-menu:hover {
+  width: 240px; /* expanded width */
+}
+
+.sidebar-menu .list-group-item {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 0;
+  background-color: transparent;
+  color: #fff;
+}
+
+.sidebar-menu .list-group-item:hover,
+.sidebar-menu .list-group-item:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.sidebar-menu .list-group-item:last-child {
+  border-bottom: 0;
+}
+
+/* Make top navbar links visually consistent */
+.navbar.bg-primary .nav-link {
+  color: #fff;
+}
+
+.navbar.bg-primary .nav-link:hover,
+.navbar.bg-primary .nav-link:focus {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 0.25rem;
+}

@@ -1,6 +1,7 @@
 'use client'
 import { createSlice, configureStore } from '@reduxjs/toolkit'
 import { Provider, useSelector, useDispatch } from 'react-redux'
+import { createAction, createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit'
 
 // Redux Slice
 const counterSlice = createSlice({
@@ -25,18 +26,58 @@ const counterSlice = createSlice({
         incrementByAmount: (state, action) => {
             state.value += action.payload
             state.history.push(`Added ${action.payload}, now ${state.value}`)
+        },
+        // Note added by listener/effects
+        addNote: (state, action) => {
+            state.history.push(`[Listener] ${action.payload}`)
         }
     }
 })
 
 // Export actions using ES6
-export const { increment, decrement, reset, incrementByAmount } = counterSlice.actions
+export const { increment, decrement, reset, incrementByAmount, addNote } = counterSlice.actions
+
+// Custom event action (to simulate external events)
+export const externalEvent = createAction('counter/externalEvent')
+
+// Listener middleware setup
+const listenerMiddleware = createListenerMiddleware()
+
+// Listener 1: react to increment/decrement synchronously
+listenerMiddleware.startListening({
+    matcher: isAnyOf(increment, decrement),
+    effect: async (action, api) => {
+        const state = api.getState()
+        const newValue = state.counter.value
+        api.dispatch(addNote(`Saw ${action.type.split('/')[1]} -> value: ${newValue}`))
+    }
+})
+
+// Listener 2: async effect when big increments happen
+listenerMiddleware.startListening({
+    actionCreator: incrementByAmount,
+    effect: async (action, api) => {
+        if (action.payload >= 5) {
+            await new Promise((r) => setTimeout(r, 500))
+            api.dispatch(addNote(`Big add of ${action.payload} processed after delay`))
+        }
+    }
+})
+
+// Listener 3: handle custom external event
+listenerMiddleware.startListening({
+    actionCreator: externalEvent,
+    effect: async (action, api) => {
+        api.dispatch(addNote(`External event: ${action.payload || 'no payload'}`))
+    }
+})
 
 // Create store
 const store = configureStore({
     reducer: {
         counter: counterSlice.reducer
-    }
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(listenerMiddleware.middleware)
 })
 
 // Counter Component
@@ -86,6 +127,28 @@ function Counter() {
                             className="btn btn-warning"
                         >
                             -3
+                        </button>
+                    </div>
+
+                    {/* Listener/Effect/Event demo controls */}
+                    <div className="mt-3">
+                        <button
+                            className="btn btn-outline-primary me-2"
+                            onClick={() => dispatch(increment())}
+                        >
+                            Trigger Listener (increment)
+                        </button>
+                        <button
+                            className="btn btn-outline-success me-2"
+                            onClick={() => dispatch(incrementByAmount(6))}
+                        >
+                            Trigger Async Effect (+6)
+                        </button>
+                        <button
+                            className="btn btn-outline-dark"
+                            onClick={() => dispatch(externalEvent('custom:ping'))}
+                        >
+                            Dispatch Custom Event
                         </button>
                     </div>
                 </div>
